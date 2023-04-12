@@ -12,6 +12,7 @@
     <modules>
         <module>zsrc-service-common</module>
         <module>zsrc-service-mvc-config</module>
+        <module>zsrc-service-nacos-client</module>
     </modules>
 
     <properties>
