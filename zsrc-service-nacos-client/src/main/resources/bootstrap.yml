@@ -2,5 +2,6 @@ spring:
   profiles:
     active: dev
 server:
+  port: 8000
   servlet:
     context-path: /service-nacos-client
