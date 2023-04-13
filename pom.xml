@@ -13,6 +13,7 @@
         <module>zsrc-service-common</module>
         <module>zsrc-service-mvc-config</module>
         <module>zsrc-service-nacos-client</module>
+        <module>zsrc-service-admin</module>
     </modules>
 
     <properties>

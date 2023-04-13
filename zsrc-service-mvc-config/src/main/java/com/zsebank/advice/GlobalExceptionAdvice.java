@@ -20,9 +20,9 @@ public class GlobalExceptionAdvice {
             HttpServletRequest req,Exception ex
     ){
         CommonResponse<String> stringCommonResponse = new CommonResponse<>(
-                -1,"error"
+                -1, ex.getMessage()
         );
-        stringCommonResponse.setData(ex.getMessage());
+        stringCommonResponse.setData(null);
         log.error("service has error:[{}]",ex.getMessage(),ex);
         return stringCommonResponse;
     }
