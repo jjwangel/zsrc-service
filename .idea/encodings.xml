@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zsrc-service-admin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zsrc-service-authority-center/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zsrc-service-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zsrc-service-mvc-config/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zsrc-service-nacos-client/src/main/java" charset="UTF-8" />

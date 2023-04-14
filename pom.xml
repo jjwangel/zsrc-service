@@ -14,6 +14,7 @@
         <module>zsrc-service-mvc-config</module>
         <module>zsrc-service-nacos-client</module>
         <module>zsrc-service-admin</module>
+        <module>zsrc-service-authority-center</module>
     </modules>
 
     <properties>
