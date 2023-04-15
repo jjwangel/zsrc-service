@@ -1,4 +1,4 @@
-package com.zsebank.conf;
+package com.zsebank.config;
 
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.zsebank.conf;
+package com.zsebank.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,8 +18,8 @@ public class Knife4jConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(new ApiInfoBuilder()
                         .description("# Authority Center RESTful APIs")
-                        .termsOfServiceUrl("http://www.jjw.com/")
-                        .contact(new Contact("jianjiawen","http://www.jjw.com","93108@qq.com"))
+                        .termsOfServiceUrl("http://localhost:8200/doc.html")
+                        .contact(new Contact("jianjiawen","http://localhost:8200/doc.html","93108@qq.com"))
                         .version("v1.0")
                         .build())
                 //分组名称
