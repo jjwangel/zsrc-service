@@ -15,6 +15,7 @@
         <module>zsrc-service-nacos-client</module>
         <module>zsrc-service-admin</module>
         <module>zsrc-service-authority-center</module>
+        <module>zsrc-service-gateway</module>
     </modules>
 
     <properties>

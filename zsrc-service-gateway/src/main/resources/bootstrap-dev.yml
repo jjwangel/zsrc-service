@@ -1,11 +1,7 @@
 spring:
   application:
-    name: admin # 应用名称也是构成 Nacos 配置管理 dataId 字段的一部分 (当 config.prefix 为空时)
+    name: service-gateway # 应用名称也是构成 Nacos 配置管理 dataId 字段的一部分 (当 config.prefix 为空时)
     domain-name: cloud.zsebank.com # 腾讯云的访问域名
-  security:
-    user:
-      name: admin
-      password: 123456
   cloud:
     nacos:
       # 服务注册发现
@@ -17,11 +13,16 @@ spring:
         metadata:
           management:
             context-path: ${server.servlet.context-path}/actuator
-          user.name: admin
-          user.password: 123456
-  thymeleaf:
-    check-template: false
-    check-template-location: false
+  main:
+    allow-bean-definition-overriding: true  # 因为将来会引入很多依赖, 难免有重名的 bean
+
+# 这个地方独立配置, 是网关的数据, 代码 GatewayConfig.java 中读取被监听
+nacos:
+  gateway:
+    route:
+      config:
+        data-id: zsrc-service-gateway
+        group: zsrc-service
 
 # 暴露端点
 management:
