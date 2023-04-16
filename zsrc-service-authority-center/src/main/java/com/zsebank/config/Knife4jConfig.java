@@ -19,7 +19,7 @@ public class Knife4jConfig {
                 .apiInfo(new ApiInfoBuilder()
                         .description("# Authority Center RESTful APIs")
                         .termsOfServiceUrl("http://localhost:8200/doc.html")
-                        .contact(new Contact("jianjiawen","http://localhost:8200/doc.html","93108@qq.com"))
+                        .contact(new Contact("jianjiawen", "http://localhost:8200/doc.html", "93108@qq.com"))
                         .version("v1.0")
                         .build())
                 //分组名称
