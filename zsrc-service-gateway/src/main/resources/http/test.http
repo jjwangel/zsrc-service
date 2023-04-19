@@ -1,0 +1,10 @@
+GET http://127.0.0.1:9000/service-gateway/service-nacos-client/nacos-client/service-instance?serviceId=nacos-client
+Accept: application/json
+
+###
+POST http://127.0.0.1:9000/service-gateway/service-nacos-client/nacos-client/service-instance?serviceId=nacos-client
+Content-Type: application/json
+
+{
+  "serviceId": "nacos-client"
+}
