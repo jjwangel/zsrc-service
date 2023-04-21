@@ -28,7 +28,8 @@ public class NacosClientController {
 
     @PostMapping("/service-instance2")
     public List<ServiceInstance> logNacosClientInfo2(@RequestBody String serviceId) {
-        log.info("logNacosClientInfo2: [{}]", JSON.parseObject(serviceId).get("serviceId").toString());
+                    log.info("logNacosClientInfo2: [{}]", JSON.parseObject(serviceId).get("serviceId").toString());
+
         return nacosClientService.getNacosClientInfo(JSON.parseObject(serviceId).get("serviceId").toString());
     }
 
