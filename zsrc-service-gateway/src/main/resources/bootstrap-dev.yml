@@ -24,6 +24,11 @@ nacos:
         data-id: zsrc-service-gateway
         group: zsrc-service
 
+signature:
+  public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkMQnEubtxnsU1b3rka/P5geyeK/bQb+VSPxxzFXKZqWv8GjUV30xK4pOqnsyW/LheRGJ5KoGc1nTYVuvxT5vE1zb3WFU5I5QpkwFBdF3tEZxJwnZX5HyAXGFEhG0TDxafArW18wtrZqTGd9I+EruHdtcBcOYHmwkdp+wB7gSFCg2Aj4EGXlnb/vgq+uj1WOgzoFWW99mxYG9U8YS6i9H7id9+JtLqEEXgtN23MatjVNrxXVjbW3tV6pLcfvmqbgAW3zsorv2RM0v3vUHs67Rx41fYkByYApwHtyAG8p0sjNxtk+/DxiKIk7p75CRKpvYLfjPIqeeDYLs3A867yNgOwIDAQAB
+  signature_info_key: signature
+  expire_time: 5 # 单位为分钟
+
 # 暴露端点
 management:
   endpoints:
