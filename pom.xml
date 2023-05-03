@@ -16,6 +16,7 @@
         <module>zsrc-service-admin</module>
         <module>zsrc-service-authority-center</module>
         <module>zsrc-service-gateway</module>
+        <module>zsrc-service-sdk</module>
     </modules>
 
     <properties>
