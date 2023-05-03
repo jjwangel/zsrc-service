@@ -9,5 +9,6 @@
     <file url="file://$PROJECT_DIR$/zsrc-service-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zsrc-service-mvc-config/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zsrc-service-nacos-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zsrc-service-sdk/src/main/java" charset="UTF-8" />
   </component>
 </project>

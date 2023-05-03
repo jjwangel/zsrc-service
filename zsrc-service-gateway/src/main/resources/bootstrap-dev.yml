@@ -15,6 +15,25 @@ spring:
             context-path: ${server.servlet.context-path}/actuator
   main:
     allow-bean-definition-overriding: true  # 因为将来会引入很多依赖, 难免有重名的 bean
+  datasource:
+    url: jdbc:mysql://${spring.application.domain-name}:3306/service_center?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: jjwjjw
+  redis:
+    database: 0
+    host: ${spring.application.domain-name}
+    port: 6379
+    password: jjwjjw
+    lettuce:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制） 默认 8
+        max-active: 8
+        # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1
+        max-wait: -1
+        # 连接池中的最大空闲连接 默认 8
+        max-idle: 8
+        # 连接池中的最小空闲连接 默认 0
+        min-idle: 0
 
 # 这个地方独立配置, 是网关的数据, 代码 GatewayConfig.java 中读取被监听
 nacos:
