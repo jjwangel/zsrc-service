@@ -1,0 +1,8 @@
+
+P
+java:S1191"5Use classes from the Java API instead of Sun classes.(Ó¨Ôÿÿÿÿÿ
+Q	java:S125""<This block of commented-out lines of code should be removed.(À¿¢Ö
+D
+java:S18747".Remove this use of "parser"; it is deprecated.(ğ€øï
+K
+java:S18747"5Remove this use of "setSigningKey"; it is deprecated.(ğ€øï
