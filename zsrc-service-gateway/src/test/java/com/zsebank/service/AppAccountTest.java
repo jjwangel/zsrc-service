@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @Slf4j
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -21,6 +23,12 @@ public class AppAccountTest {
     public void getAppAccount(){
         AppAccount appAccount = appAccountService.getById(1);
         log.info(JSON.toJSONString(appAccount));
+    }
+
+    @Test
+    public void getAppAccountList(){
+        List<AppAccount> appAccountList = appAccountService.list();
+        log.info(JSON.toJSONString(appAccountList));
     }
 
 }
