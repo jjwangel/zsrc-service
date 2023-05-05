@@ -1,8 +1,6 @@
 
 {
 Kzsrc-service-gateway/src/main/java/com/zsebank/mapper/AppAccountMapper.java,a/5/a5d279c2a3120d024827ff239c1e959a0eb74668
-u
-Ezsrc-service-gateway/src/main/java/com/zsebank/entity/AppAccount.java,1/b/1bf06e9a5077c99bc30855cf454c9aa689d8aca5
 †
 Vzsrc-service-gateway/src/main/java/com/zsebank/service/impl/AppAccountServiceImpl.java,7/d/7d34fc4b31f5d11a6441bec65341144e913b0ce4
 w
@@ -1034,3 +1032,5 @@ Jzsrc-service-gateway/src/test/java/com/zsebank/service/AppAccountTest.java,e/9
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 M
 zsrc-service-admin/.gitignore,4/6/4659c84dd413d95ad2220085bd5f63db3ba55cb6
+N
+zsrc-service-common/.gitignore,c/f/cf7243df0deda68f01ef6ffeabc1e31067b273f6
