@@ -1,7 +1,6 @@
 package com.zsebank;
 
 import cn.hutool.core.util.RandomUtil;
-import com.zsebank.config.SignatureInfoConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
