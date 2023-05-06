@@ -97,10 +97,6 @@ G.idea/sonarlint/issuestore/c/d/cd69b822a9ab8d17e7e9ef57fc34e55c592c87fe,a/9/a9
 Q.idea/sonarlint/securityhotspotstore/c/d/cd69b822a9ab8d17e7e9ef57fc34e55c592c87fe,2/0/2039bcbd907ade344e0aedecf453f14e86a8257f
 Å
 Qzsrc-service-authority-center/src/main/java/com/zsebank/config/Knife4jConfig.java,b/8/b86dd0a03f10a048ff7cdf68e697d0b9e7813bb9
-~
-Nzsrc-service-gateway/src/main/java/com/zsebank/config/SignatureInfoConfig.java,e/6/e64238902245cc974a460efc9de2b9d6b04be91c
-v
-Fzsrc-service-gateway/src/test/java/com/zsebank/ServiceGatewayTest.java,f/d/fd05b2412bfe13a5ac9e52dc08efb0690e42a4ee
 Å
 Q.idea/sonarlint/securityhotspotstore/e/1/e1d658cf331ecad5b91f55baa2d7382ca2961af7,5\9\59ba2dce4c9a226be20aac006d79f9392fbadacb
 Å
@@ -321,10 +317,6 @@ U
 %zsrc-service-authority-center/pom.xml,d\9\d998c585e0ce0efc414bd4c868fb94dc6b3f4b87
 p
 @zsrc-service-gateway/src/main/java/com/zsebank/package-info.java,c\6\c62c5d3d4aac54a3bd52333fdcd7ae66fc738669
-{
-Kzsrc-service-gateway/src/main/java/com/zsebank/util/SignatureParseUtil.java,b\5\b5fe1defd3c3a92c014e4b677a32438d938f8ae8
-L
-zsrc-service-gateway/pom.xml,9\f\9f51ce586872ec4b9e9e432431fadd17298526e0
 m
 =zsrc-service-gateway/src/test/java/com/zsebank/RedisTest.java,c\f\cfbd4eb5b4f6ab5c5483547f718885a506daba06
 w
@@ -751,14 +743,10 @@ Kzsrc-service-gateway/src/main/java/com/zsebank/mapper/AppAccountMapper.java,a\
 Q.idea/sonarlint/securityhotspotstore/d/5/d56feff07dd480da6afa09892ea9b49780c933ff,b\8\b87ed6370fa0402214fd7f011aa5a6ef96cd1449
 Å
 Q.idea/sonarlint/securityhotspotstore/f/0/f0bf4bed5ecdc9cb6b5395eda1a5d360548e64eb,0\9\0987c78d02c2328a9780004c0f0c3a056cce97f2
-Ü
-Vzsrc-service-gateway/src/main/java/com/zsebank/service/impl/AppAccountServiceImpl.java,7\d\7d34fc4b31f5d11a6441bec65341144e913b0ce4
 u
 Ezsrc-service-gateway/src/main/java/com/zsebank/entity/AppAccount.java,1\b\1bf06e9a5077c99bc30855cf454c9aa689d8aca5
 
 Ozsrc-service-gateway/src/main/java/com/zsebank/handler/MyMetaObjectHandler.java,9\c\9c80c912474f33a692a01d17f71fa5dc5be13be1
-}
-Mzsrc-service-gateway/src/main/java/com/zsebank/service/AppAccountService.java,c\2\c2e9bf8ce7741c704221377114b696186eeadb82
 w
 G.idea/sonarlint/issuestore/6/e/6e7198b38a64640b565f0e0bf2d5d7b1c968ac5d,8\f\8f9a3413a5222e0484cbfebe0dd89848eb97255b
 w

@@ -1,7 +1,6 @@
 package com.zsebank.util;
 
 import com.alibaba.fastjson2.JSON;
-import com.zsebank.config.SignatureInfoConfig;
 import com.zsebank.entity.AuthSignatureInfo;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
