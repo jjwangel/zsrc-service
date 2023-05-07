@@ -1,5 +1,6 @@
 package com.zsebank;
 
+import com.zsebank.constant.RedisConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,7 +43,7 @@ public class RedisTest {
     }
 
     @Test
-    public void RedisTest(){
+    public void redisTest(){
 //        redisTemplate.opsForValue().set("name","jianjiawen");
 //        log.info(redisTemplate.opsForValue().get("name"));
         stringRedisTemplate.opsForValue().set("name","jianjiawen");
@@ -56,10 +57,15 @@ public class RedisTest {
     }
 
     @Test
-    public void RedisTest3(){
+    public void redisTest3(){
         ValueOperations ops = redisTemplate.opsForValue();
         ops.set("name","jjw");
 
+    }
+
+    @Test
+    public void redisTest4(){
+        log.info(redisTemplate.opsForValue().getAndSet(RedisConstant.API_REQUEST_PREFIX,"abc"));
     }
 
 }

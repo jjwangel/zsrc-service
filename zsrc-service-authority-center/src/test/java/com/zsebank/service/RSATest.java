@@ -1,12 +1,15 @@
 package com.zsebank.service;
 
 import cn.hutool.core.codec.Base64;
+import cn.hutool.crypto.KeyUtil;
+import cn.hutool.jwt.signers.AlgorithmUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.crypto.SecretKey;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPrivateCrtKey;
@@ -34,6 +37,12 @@ public class RSATest {
 
         log.info("private key:[{}]", Base64.encode(privateCrtKey.getEncoded()));
         log.info("public key:[{}]",Base64.encode(publicKey.getEncoded()));
+    }
+
+    @Test
+    public void generateKeyBytes2(){
+        SecretKey secretKey = KeyUtil.generateKey(AlgorithmUtil.getAlgorithm("rs256"));
+        log.info(secretKey.getAlgorithm());
     }
 
 }
