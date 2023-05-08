@@ -1,7 +1,12 @@
 package com.zsebank.service.impl;
 
+import cn.hutool.core.util.StrUtil;
+import com.zsebank.constant.RedisConstant;
 import com.zsebank.entity.AppAccount;
 import com.zsebank.service.RedisService;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +17,19 @@ import java.util.List;
  */
 @Service
 public class RedisServiceImpl implements RedisService {
+
+
+    private final StringRedisTemplate stringRedisTemplate;
+    private final RedisTemplate<String,Object> objectRedisTemplate;
+
+    public RedisServiceImpl(StringRedisTemplate stringRedisTemplate, RedisTemplate<String, Object> objectRedisTemplate) {
+        this.stringRedisTemplate = stringRedisTemplate;
+        this.objectRedisTemplate = objectRedisTemplate;
+    }
+
+
+
+
     /**
      * 刷新AppAccount，并返回对应的AppId的AppAccount对像
      * @param strAppId 应用id
@@ -19,7 +37,11 @@ public class RedisServiceImpl implements RedisService {
      * @return AppAccount 对像
      * **/
     @Override
-    public AppAccount refreshAppAccount(String strAppId, List<AppAccount> appAccountList) {
+    public AppAccount refreshAppAccount(@NotNull String strAppId, @NotNull List<AppAccount> appAccountList) {
+        appAccountList.stream()
+                .peek(v -> {
+                    objectRedisTemplate.opsForValue().set(StrUtil.format("{}{}", RedisConstant.APP_ACCOUNT_PREFIX,strAppId),v);
+                });
         return null;
     }
 
@@ -39,6 +61,18 @@ public class RedisServiceImpl implements RedisService {
      * **/
     @Override
     public AppAccount getAppAccountByAppId(String strAppId) {
+        return null;
+    }
+
+    /**
+     * 保存请求到Resis,防止请求重复提交
+     * @param key key
+     * @param value value
+     * @param time 过期时间
+     * @return 返回null 表示请求可用，不为null表示请求已重复
+     **/
+    @Override
+    public String saveApiRequest(String key, String value, long time) {
         return null;
     }
 }

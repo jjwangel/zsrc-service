@@ -13,6 +13,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         this.strictInsertFill(metaObject, "createTime", LocalDateTime::now, LocalDateTime.class);
         this.strictInsertFill(metaObject, "ipWhite", () -> "0.0.0.0",String.class);
+        this.strictInsertFill(metaObject, "isEnable", () -> 1,Integer.class);
     }
 
     @Override
