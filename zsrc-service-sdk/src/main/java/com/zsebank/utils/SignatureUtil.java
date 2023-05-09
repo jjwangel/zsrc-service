@@ -31,14 +31,9 @@ public class SignatureUtil {
     public static String generateSignature(String strPrivateKey) throws Exception {
         AuthSignatureInfo authSignatureInfo = new AuthSignatureInfo(System.currentTimeMillis(), RandomUtil.randomNumbers(6));
         // 计算超时时间
-//        ZonedDateTime zdt = LocalDate.now().plus(SignatureConstant.EXPIRE_TIME, ChronoUnit.MINUTES)
-//                .atStartOfDay(ZoneId.systemDefault());
-//        Date expireDate = Date.from(zdt.toInstant());
 
-        SimpleDateFormat simpleDateFormat =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar nowTime = Calendar.getInstance();
         nowTime.add(Calendar.MINUTE, SignatureConstant.EXPIRE_TIME);
-        System.out.println(nowTime.getTime().toString());
 
         return Jwts.builder()
                 // jwt payload --> KV
