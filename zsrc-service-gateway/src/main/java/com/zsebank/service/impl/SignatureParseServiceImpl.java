@@ -1,16 +1,16 @@
 package com.zsebank.service.impl;
 
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson2.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zsebank.constant.RedisConstant;
-import com.zsebank.constant.SignatureConstant;
 import com.zsebank.entity.AppAccount;
 import com.zsebank.entity.AuthSignatureInfo;
 import com.zsebank.service.SignatureParseService;
+import com.zsebank.util.RedisUtil;
 import com.zsebank.util.SignatureParseUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.awt.AppContext;
 
 import java.util.List;
 
@@ -22,13 +22,12 @@ import java.util.List;
 public class SignatureParseServiceImpl implements SignatureParseService {
 
     private final RedisServiceImpl redisService;
+    private final AppAccountServiceImpl appAccountService;
 
     public SignatureParseServiceImpl(RedisServiceImpl redisService, AppAccountServiceImpl appAccountService) {
         this.redisService = redisService;
         this.appAccountService = appAccountService;
     }
-
-    private final AppAccountServiceImpl appAccountService;
 
     /**
      * 签名解释，成功返回AuthSignatureInfo对像
@@ -40,21 +39,12 @@ public class SignatureParseServiceImpl implements SignatureParseService {
     public AuthSignatureInfo signatureParse(String strAppId,String strSignature) throws Exception {
 
         // 1.通过app_id 在redis中查找是否存在public_key
-        AppAccount appAccount = redisService.getAppAccountByAppId(strAppId);
+        AppAccount appAccount = getAppAccountByAppId(strAppId);
         if (null == appAccount){
-            // 2.如果redis没有则从数据库中读取对应的appid的public_key并写入到redis中
-            List<AppAccount> appAccountList = appAccountService.list(new QueryWrapper<AppAccount>().eq("is_enable",1));
-            if(null == appAccountList){
-                throw new RuntimeException("error");
-            } else {
-                appAccount = redisService.refreshAppAccount(strAppId,appAccountList);
-                if(null == appAccount) {
-                    throw new RuntimeException("error");
-                }
-            }
+            throw new RuntimeException("error");
         }
 
-        // 3.使用public_key解释签名，并获取AuthSignatureInfo对像和过期时间
+        // 2.使用public_key解释签名，并获取AuthSignatureInfo对像和过期时间
         AuthSignatureInfo authSignatureInfo = SignatureParseUtil.parse(strSignature,appAccount.getAppPublicKey());
         if(null == authSignatureInfo){
             throw new RuntimeException("error");
@@ -67,5 +57,14 @@ public class SignatureParseServiceImpl implements SignatureParseService {
         }
 
         return authSignatureInfo;
+    }
+
+    /**
+     * 通过app_id 在redis中查找是否存在public_key
+     * @param strAppId 应用APP_ID
+     * @return 返回 AppAccount
+     * **/
+    private AppAccount getAppAccountByAppId(String strAppId) {
+
     }
 }

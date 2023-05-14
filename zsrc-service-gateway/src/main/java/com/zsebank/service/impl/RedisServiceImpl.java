@@ -3,7 +3,6 @@ package com.zsebank.service.impl;
 import cn.hutool.core.util.StrUtil;
 import com.zsebank.constant.RedisConstant;
 import com.zsebank.entity.AppAccount;
-import com.zsebank.service.RedisService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -13,10 +12,10 @@ import java.util.List;
 
 /**
  * @author micha
- * Redis 相关的服务接口实现类
+ * Redis 相关的服务实现类
  */
 @Service
-public class RedisServiceImpl implements RedisService {
+public class RedisServiceImpl {
 
 
     private final StringRedisTemplate stringRedisTemplate;
@@ -25,6 +24,14 @@ public class RedisServiceImpl implements RedisService {
     public RedisServiceImpl(StringRedisTemplate stringRedisTemplate, RedisTemplate<String, Object> objectRedisTemplate) {
         this.stringRedisTemplate = stringRedisTemplate;
         this.objectRedisTemplate = objectRedisTemplate;
+    }
+
+    public StringRedisTemplate getStringRedisTemplate(){
+        return this.stringRedisTemplate;
+    }
+
+    public RedisTemplate<String,Object> getObjectRedisTemplate(){
+        return this.objectRedisTemplate;
     }
 
 
@@ -52,16 +59,6 @@ public class RedisServiceImpl implements RedisService {
     @Override
     public void refreshAppAccount(List<AppAccount> appAccountList) throws Exception {
         // TODO document why this method is empty
-    }
-
-    /**
-     * 通过AppId查询
-     * @param strAppId 应用id
-     * @return AppAccount 对像
-     * **/
-    @Override
-    public AppAccount getAppAccountByAppId(String strAppId) {
-        return null;
     }
 
     /**
