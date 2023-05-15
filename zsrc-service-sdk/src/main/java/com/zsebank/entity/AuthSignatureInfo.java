@@ -3,6 +3,7 @@ package com.zsebank.entity;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 签名信息
@@ -10,15 +11,15 @@ import java.io.Serializable;
 @Data
 public class AuthSignatureInfo implements Serializable {
 
-    /** 时间戳 */
-    private final Long timeMillis;
+    /** 当前时间 */
+    private final Date now;
 
     /** 6位随机数 */
-    private final String strNonce;
+    private final String nonce;
 
-    public AuthSignatureInfo(Long timeMillis, String strNonce) {
-        this.timeMillis = timeMillis;
-        this.strNonce = strNonce;
+    public AuthSignatureInfo(Date now, String nonce) {
+        this.now = now;
+        this.nonce = nonce;
     }
 
 

@@ -10,6 +10,8 @@ import cn.hutool.jwt.signers.JWTSignerUtil;
 import com.zsebank.constant.SignatureConstant;
 import com.zsebank.entity.AuthSignatureInfo;
 
+import java.util.Date;
+
 /**
  * @author jianjiawen
  * 签名工具类
@@ -18,14 +20,15 @@ public class SignatureUtil {
     /**
      * 生成签名
      * **/
-    public static String generateSignature(String privateKey) throws Exception {
+    public static String generateSignature(String privateKey) {
         RSA rsa =new RSA(privateKey,null);
-        AuthSignatureInfo authSignatureInfo = new AuthSignatureInfo(System.currentTimeMillis(), RandomUtil.randomNumbers(6));
+        Date now = DateUtil.date();
+        AuthSignatureInfo authSignatureInfo = new AuthSignatureInfo(now, RandomUtil.randomNumbers(6));
 
         return JWT.create()
                 .addPayloads(BeanUtil.beanToMap(authSignatureInfo))
                 .setSigner(JWTSignerUtil.rs256(rsa.getPrivateKey()))
-                .setExpiresAt(DateUtil.offset(DateUtil.date(), DateField.MINUTE,SignatureConstant.EXPIRE_TIME))
+                .setExpiresAt(DateUtil.offset(now, DateField.MINUTE,SignatureConstant.EXPIRE_TIME))
                 .sign();
     }
 }

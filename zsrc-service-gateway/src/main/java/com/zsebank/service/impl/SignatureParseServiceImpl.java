@@ -1,18 +1,16 @@
 package com.zsebank.service.impl;
 
-import cn.hutool.core.convert.Convert;
-import cn.hutool.core.util.StrUtil;
-import com.alibaba.fastjson2.JSON;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import cn.hutool.core.text.CharSequenceUtil;
 import com.zsebank.constant.RedisConstant;
+import com.zsebank.constant.SignatureConstant;
 import com.zsebank.entity.AppAccount;
 import com.zsebank.entity.AuthSignatureInfo;
 import com.zsebank.service.SignatureParseService;
-import com.zsebank.util.RedisUtil;
 import com.zsebank.util.SignatureParseUtil;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author micha
@@ -21,12 +19,12 @@ import java.util.List;
 @Service
 public class SignatureParseServiceImpl implements SignatureParseService {
 
-    private final RedisServiceImpl redisService;
-    private final AppAccountServiceImpl appAccountService;
+    private final RedisTemplate<String,String> stringRedisTemplate;
+    private final RedisTemplate<String,Object> objectRedisTemplate;
 
-    public SignatureParseServiceImpl(RedisServiceImpl redisService, AppAccountServiceImpl appAccountService) {
-        this.redisService = redisService;
-        this.appAccountService = appAccountService;
+    public SignatureParseServiceImpl(RedisTemplate<String, Object> objectRedisTemplate, RedisTemplate<String, String> stringRedisTemplate) {
+        this.objectRedisTemplate = objectRedisTemplate;
+        this.stringRedisTemplate = stringRedisTemplate;
     }
 
     /**
@@ -50,8 +48,8 @@ public class SignatureParseServiceImpl implements SignatureParseService {
             throw new RuntimeException("error");
         } else {
             // 4.判断本次请求是否存在于redis，如果存在则认为是重复请求。
-            if(!StrUtil.hasEmpty(redisService.saveApiRequest(StrUtil.format("{}{}{}",
-                    RedisConstant.API_REQUEST_PREFIX,authSignatureInfo.getTimeMillis(),authSignatureInfo.getStrNonce()), authSignatureInfo.getTimeMillis().toString(), 0))){
+            if(!setIfAbsentApiRequest(CharSequenceUtil.format("{}{}{}",
+                    RedisConstant.API_REQUEST_PREFIX,authSignatureInfo.getNow().getTime(),authSignatureInfo.getNonce()), authSignatureInfo.getNow())){
                 throw new RuntimeException("error");
             }
         }
@@ -61,10 +59,25 @@ public class SignatureParseServiceImpl implements SignatureParseService {
 
     /**
      * 通过app_id 在redis中查找是否存在public_key
-     * @param strAppId 应用APP_ID
+     * @param appId 应用APP_ID
      * @return 返回 AppAccount
      * **/
-    private AppAccount getAppAccountByAppId(String strAppId) {
+    private AppAccount getAppAccountByAppId(String appId) {
+        Object objV = objectRedisTemplate.opsForValue().get(CharSequenceUtil.format("{}:{}",RedisConstant.APP_ACCOUNT_PREFIX,appId));
+        if(null != objV){
+            return (AppAccount) objV;
+        } else {
+            return null;
+        }
+    }
 
+    /**
+     * 如果键不存在则新增,存在则不改变已经有的值。
+     * @param key key
+     * @param val val
+     * @return key存在返回 false，不存在返回 true。
+     * **/
+    private Boolean setIfAbsentApiRequest(String key, Date val){
+        return stringRedisTemplate.opsForValue().setIfAbsent(key,String.valueOf(val.getTime()), SignatureConstant.EXPIRE_TIME + 1L, TimeUnit.MINUTES);
     }
 }

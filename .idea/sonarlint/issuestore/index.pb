@@ -269,14 +269,8 @@ Q.idea/sonarlint/securityhotspotstore/4/e/4e362b2cc7329c2514d686b4a82262f61a8523
 Wzsrc-service-authority-center/src/main/java/com/zsebank/AuthorityCenterApplication.java,c\4\c433343e8a5886393cb9480ac861d8c487417ff8
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-Ç
-Rzsrc-service-gateway/src/main/java/com/zsebank/config/DynamicRouteServiceImpl.java,e\b\ebe8c052da3aa44f95f296d9de83294510d726dc
 U
 %zsrc-service-authority-center/pom.xml,d\9\d998c585e0ce0efc414bd4c868fb94dc6b3f4b87
-x
-Hzsrc-service-gateway/src/main/java/com/zsebank/config/GatewayConfig.java,6\d\6da47952550c4bc6941b3a13c6fcdd74eaa3341e
-â
-Yzsrc-service-gateway/src/main/java/com/zsebank/config/DynamicRouteServiceImplByNacos.java,b\0\b03ec8a820d2f5a7a1e058708141a10185d8d653
 p
 @zsrc-service-gateway/src/main/java/com/zsebank/package-info.java,c\6\c62c5d3d4aac54a3bd52333fdcd7ae66fc738669
 w
@@ -2767,16 +2761,10 @@ Ezsrc-service-gateway/src/main/java/com/zsebank/entity/AppAccount.java,1/b/1bf0
 Ozsrc-service-gateway/src/main/java/com/zsebank/handler/MyMetaObjectHandler.java,9/c/9c80c912474f33a692a01d17f71fa5dc5be13be1
 L
 zsrc-service-gateway/pom.xml,9/f/9f51ce586872ec4b9e9e432431fadd17298526e0
-z
-Jzsrc-service-gateway/src/main/java/com/zsebank/constant/RedisConstant.java,3/3/33bf2acfa5317731e1bff7870d3a2f7f39e3846a
 |
 Lzsrc-service-authority-center/src/test/java/com/zsebank/service/RSATest.java,1/7/17ccdd89bfda90d32a82209188f8c9eb77c7b67d
-Å
-Qzsrc-service-gateway/src/main/java/com/zsebank/service/SignatureParseService.java,c/9/c9210cde2d9b376d758e282b2dc82664af84e80b
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
-x
-Hzsrc-service-sdk/src/main/java/com/zsebank/entity/AuthSignatureInfo.java,0/f/0f9d55bf1fffe1b8cc79b26e04c4bcc5b497d511
 m
 =zsrc-service-gateway/src/test/java/com/zsebank/RedisTest.java,c/f/cfbd4eb5b4f6ab5c5483547f718885a506daba06
 z
@@ -2787,7 +2775,7 @@ H
 zsrc-service-sdk/pom.xml,b/5/b5f7c2f032528558d32347e470be9226e69655d0
 v
 Fzsrc-service-gateway/src/test/java/com/zsebank/ServiceGatewayTest.java,f/d/fd05b2412bfe13a5ac9e52dc08efb0690e42a4ee
-z
-Jzsrc-service-sdk/src/main/java/com/zsebank/constant/SignatureConstant.java,2/8/28dda72f1f5dad387eb011e3548a56921aaab7f7
-s
-Czsrc-service-sdk/src/main/java/com/zsebank/utils/SignatureUtil.java,c/e/ce7accf4cafc5769825287e08a641eb3f803276d
+v
+Fzsrc-service-gateway/src/main/java/com/zsebank/GatewayApplication.java,2/2/22f6f1aea3d57bd768dc51fc86643e830b176c37
+}
+Mzsrc-service-gateway/src/main/java/com/zsebank/service/AppAccountService.java,c/2/c2e9bf8ce7741c704221377114b696186eeadb82
