@@ -68,4 +68,9 @@ public class RedisTest {
         log.info(redisTemplate.opsForValue().getAndSet(RedisConstant.API_REQUEST_PREFIX,"abc"));
     }
 
+    @Test
+    public void redisTest5(){
+        redisTemplate.opsForValue().set("app_account:dev","231231312313");
+    }
+
 }

@@ -1,6 +1,8 @@
 package com.zsebank.service.impl;
 
 import cn.hutool.core.text.CharSequenceUtil;
+import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson2.JSON;
 import com.zsebank.constant.RedisConstant;
 import com.zsebank.constant.SignatureConstant;
 import com.zsebank.entity.AppAccount;
@@ -39,18 +41,18 @@ public class SignatureParseServiceImpl implements SignatureParseService {
         // 1.通过app_id 在redis中查找是否存在public_key
         AppAccount appAccount = getAppAccountByAppId(strAppId);
         if (null == appAccount){
-            throw new RuntimeException("error");
+            throw new RuntimeException("getAppAccountByAppId error");
         }
 
         // 2.使用public_key解释签名，并获取AuthSignatureInfo对像和过期时间
         AuthSignatureInfo authSignatureInfo = SignatureParseUtil.parse(strSignature,appAccount.getAppPublicKey());
         if(null == authSignatureInfo){
-            throw new RuntimeException("error");
+            throw new RuntimeException("parse error");
         } else {
             // 4.判断本次请求是否存在于redis，如果存在则认为是重复请求。
             if(!setIfAbsentApiRequest(CharSequenceUtil.format("{}{}{}",
                     RedisConstant.API_REQUEST_PREFIX,authSignatureInfo.getNow().getTime(),authSignatureInfo.getNonce()), authSignatureInfo.getNow())){
-                throw new RuntimeException("error");
+                throw new RuntimeException("setIfAbsentApiRequest error");
             }
         }
 
@@ -63,9 +65,9 @@ public class SignatureParseServiceImpl implements SignatureParseService {
      * @return 返回 AppAccount
      * **/
     private AppAccount getAppAccountByAppId(String appId) {
-        Object objV = objectRedisTemplate.opsForValue().get(CharSequenceUtil.format("{}:{}",RedisConstant.APP_ACCOUNT_PREFIX,appId));
-        if(null != objV){
-            return (AppAccount) objV;
+        String val = stringRedisTemplate.opsForValue().get(CharSequenceUtil.format("{}{}",RedisConstant.APP_ACCOUNT_PREFIX,appId));
+        if(CharSequenceUtil.isNotEmpty(val)){
+            return JSON.parseObject(val,AppAccount.class);
         } else {
             return null;
         }
