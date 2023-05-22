@@ -51,7 +51,7 @@ public class SignatureParseServiceImpl implements SignatureParseService {
         } else {
             // 4.判断本次请求是否存在于redis，如果存在则认为是重复请求。
             if(!setIfAbsentApiRequest(CharSequenceUtil.format("{}{}{}",
-                    RedisConstant.API_REQUEST_PREFIX,authSignatureInfo.getNow().getTime(),authSignatureInfo.getNonce()), authSignatureInfo.getNow())){
+                    RedisConstant.API_REQUEST_PREFIX,authSignatureInfo.getDate(),authSignatureInfo.getNonce()),authSignatureInfo.getDate())){
                 throw new RuntimeException("setIfAbsentApiRequest error");
             }
         }
@@ -76,10 +76,10 @@ public class SignatureParseServiceImpl implements SignatureParseService {
     /**
      * 如果键不存在则新增,存在则不改变已经有的值。
      * @param key key
-     * @param val val
+     * @param date date
      * @return key存在返回 false，不存在返回 true。
      * **/
-    private Boolean setIfAbsentApiRequest(String key, Date val){
-        return stringRedisTemplate.opsForValue().setIfAbsent(key,String.valueOf(val.getTime()), SignatureConstant.EXPIRE_TIME + 1L, TimeUnit.MINUTES);
+    private Boolean setIfAbsentApiRequest(String key, long date){
+        return stringRedisTemplate.opsForValue().setIfAbsent(key,String.valueOf(date), SignatureConstant.EXPIRE_TIME + SignatureConstant.LEEWAY_TIME, TimeUnit.MINUTES);
     }
 }

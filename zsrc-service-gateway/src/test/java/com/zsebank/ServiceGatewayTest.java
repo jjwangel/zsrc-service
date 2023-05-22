@@ -1,6 +1,7 @@
 package com.zsebank;
 
 import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson2.JSON;
 import com.zsebank.entity.AuthSignatureInfo;
 import com.zsebank.service.impl.SignatureParseServiceImpl;
 import com.zsebank.utils.SignatureUtil;
@@ -34,8 +35,10 @@ public class ServiceGatewayTest {
 
     @Test
     public void signatureParseServiceTest() throws Exception {
-        AuthSignatureInfo authSignatureInfo = signatureParseService.signatureParse("dev","sdfsfdsfsdf");
-        assert authSignatureInfo != null;
+        String signature="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJkYXRlIjoxNjg0NzQwNDA5OTUyLCJub25jZSI6IjE1ODkzNCIsImV4cCI6MTY4NDc0MDcwOX0.B4bQrtVkSILjgxiEUsbbLJO-s_h4Qwv1sjZwSwxJxLQVlLeBZYtc4O2B-Lfg5-Gny8-IR9WCyNnxwCo_Xx6JH5d_Z2LIrXVk3cS8D0lItwa8NFOarNcmViYP1hNuJ5DpXHGuFNt07dR6IGJxE3DHGFo4xXJT_ocfOc4RII9U8AeVHajfwIFO4jNvNibXXxU2rHEOp18ZmA5E2fdYJQY3aQO5NsxpBP0Y6L0bISYpOr3UJ3y_6h78PpMLhQsJ0z4QqAzHO7TLb6Z5lKAoJ3VPjKFoRxUYKprsjDF1vYysJ4i12FdRKZZoEjmCxY2Ue1vaRiEATJDfu5HxXIA-JE2nZg";
+
+        AuthSignatureInfo authSignatureInfo = signatureParseService.signatureParse("dev",signature);
+        log.info(JSON.toJSONString(authSignatureInfo));
     }
 
 }

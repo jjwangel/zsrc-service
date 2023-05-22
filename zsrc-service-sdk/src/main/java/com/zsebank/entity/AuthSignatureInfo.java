@@ -1,24 +1,23 @@
 package com.zsebank.entity;
-
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
+ * @author jianjiawen
  * 签名信息
  * **/
 @Data
 public class AuthSignatureInfo implements Serializable {
 
-    /** 当前时间 */
-    private final Date now;
+    /** 当前的时间戳 */
+    private final long date;
 
     /** 6位随机数 */
     private final String nonce;
 
-    public AuthSignatureInfo(Date now, String nonce) {
-        this.now = now;
+    public AuthSignatureInfo(long date, String nonce) {
+        this.date = date;
         this.nonce = nonce;
     }
 

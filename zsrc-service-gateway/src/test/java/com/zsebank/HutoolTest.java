@@ -2,6 +2,8 @@ package com.zsebank;
 
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.date.DateUnit;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
@@ -88,6 +90,13 @@ public class HutoolTest {
 //        JWT jwt = JWT.of(token).setSigner(JWTSignerUtil.rs256(rsa.getPublicKey()));
 //        log.info(jwt.getPayloads().toString());
 //        log.info(String.valueOf(jwt.validate(120)));
+
+    }
+
+    @Test
+    public void test1(){
+        log.info(String.valueOf(DateUtil.current()));
+        log.info(DateUtil.date(1684740409952L).toString());
 
     }
 

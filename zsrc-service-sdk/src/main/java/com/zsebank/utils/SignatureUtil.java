@@ -22,13 +22,13 @@ public class SignatureUtil {
      * **/
     public static String generateSignature(String privateKey) {
         RSA rsa =new RSA(privateKey,null);
-        Date now = DateUtil.date();
+        long now = DateUtil.current();
         AuthSignatureInfo authSignatureInfo = new AuthSignatureInfo(now, RandomUtil.randomNumbers(6));
 
         return JWT.create()
                 .addPayloads(BeanUtil.beanToMap(authSignatureInfo))
                 .setSigner(JWTSignerUtil.rs256(rsa.getPrivateKey()))
-                .setExpiresAt(DateUtil.offset(now, DateField.MINUTE,SignatureConstant.EXPIRE_TIME))
+                .setExpiresAt(DateUtil.offset(DateUtil.date(now), DateField.MINUTE,SignatureConstant.EXPIRE_TIME))
                 .sign();
     }
 }

@@ -29,7 +29,6 @@ public class SignatureParseUtil {
     public static AuthSignatureInfo parse(String signature,String strPublicKey) {
         RSA rsa = new RSA(null,strPublicKey);
         JWT jwt = JWT.of(signature).setSigner(JWTSignerUtil.rs256(rsa.getPublicKey()));
-
         return jwt.validate(SignatureConstant.LEEWAY_TIME)? JSON.parseObject(jwt.getPayloads().toString(),AuthSignatureInfo.class):null;
     }
 
