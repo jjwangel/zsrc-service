@@ -1,6 +1,9 @@
 package com.zsebank.controller;
 
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.RandomUtil;
 import com.alibaba.fastjson2.JSON;
+import com.zsebank.entity.AuthSignatureInfo;
 import com.zsebank.service.NacosClientService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.client.ServiceInstance;
@@ -26,11 +29,10 @@ public class NacosClientController {
         return nacosClientService.getNacosClientInfo(serviceId);
     }
 
-    @PostMapping("/service-instance2")
-    public List<ServiceInstance> logNacosClientInfo2(@RequestBody String serviceId) {
-                    log.info("logNacosClientInfo2: [{}]", JSON.parseObject(serviceId).get("serviceId").toString());
-
-        return nacosClientService.getNacosClientInfo(JSON.parseObject(serviceId).get("serviceId").toString());
+    @PostMapping("/postTest1")
+    public AuthSignatureInfo test1(@RequestBody String serviceId) {
+        log.info("serviceId:[{}]",serviceId);
+        return new AuthSignatureInfo(DateUtil.current(), RandomUtil.randomNumbers(6));
     }
 
 
