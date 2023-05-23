@@ -1,7 +1,6 @@
 package com.zsebank.service.impl;
 
 import cn.hutool.core.text.CharSequenceUtil;
-import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
 import com.zsebank.constant.RedisConstant;
 import com.zsebank.constant.SignatureConstant;
@@ -11,7 +10,6 @@ import com.zsebank.service.SignatureParseService;
 import com.zsebank.util.SignatureParseUtil;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -80,6 +78,6 @@ public class SignatureParseServiceImpl implements SignatureParseService {
      * @return key存在返回 false，不存在返回 true。
      * **/
     private Boolean setIfAbsentApiRequest(String key, long date){
-        return stringRedisTemplate.opsForValue().setIfAbsent(key,String.valueOf(date), SignatureConstant.EXPIRE_TIME + SignatureConstant.LEEWAY_TIME, TimeUnit.MINUTES);
+        return stringRedisTemplate.opsForValue().setIfAbsent(key,String.valueOf(date), SignatureConstant.EXPIRE_TIME*60 + SignatureConstant.LEEWAY_TIME, TimeUnit.SECONDS);
     }
 }

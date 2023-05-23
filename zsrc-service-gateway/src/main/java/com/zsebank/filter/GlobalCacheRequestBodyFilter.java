@@ -25,35 +25,37 @@ public class GlobalCacheRequestBodyFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
-//        boolean isloginOrRegister =
-//                exchange.getRequest().getURI().getPath().contains(GatewayConstant.LOGIN_URI)
-//                        || exchange.getRequest().getURI().getPath().contains(GatewayConstant.REGISTER_URI);
+        return chain.filter(exchange);
 //
-//        if (null == exchange.getRequest().getHeaders().getContentType()
-//                || !isloginOrRegister) {
-//            return chain.filter(exchange);
-//        }
-        log.info("GlobalCacheRequestBodyFilter into");
-        // DataBufferUtils.join 拿到请求中的数据 --> DataBuffer
-        return DataBufferUtils.join(exchange.getRequest().getBody()).flatMap(dataBuffer -> {
-
-            // 确保数据缓冲区不被释放, 必须要 DataBufferUtils.retain
-            DataBufferUtils.retain(dataBuffer);
-            // defer、just 都是去创建数据源, 得到当前数据的副本
-            Flux<DataBuffer> cachedFlux = Flux.defer(() ->
-                    Flux.just(dataBuffer.slice(0, dataBuffer.readableByteCount())));
-            // 重新包装 ServerHttpRequest, 重写 getBody 方法, 能够返回请求数据
-            ServerHttpRequest mutatedRequest =
-                    new ServerHttpRequestDecorator(exchange.getRequest()) {
-                        @Override
-                        public Flux<DataBuffer> getBody() {
-                            return cachedFlux;
-                        }
-                    };
-            // 将包装之后的 ServerHttpRequest 向下继续传递
-            log.info("GlobalCacheRequestBodyFilter is execule");
-            return chain.filter(exchange.mutate().request(mutatedRequest).build());
-        });
+////        boolean isloginOrRegister =
+////                exchange.getRequest().getURI().getPath().contains(GatewayConstant.LOGIN_URI)
+////                        || exchange.getRequest().getURI().getPath().contains(GatewayConstant.REGISTER_URI);
+////
+////        if (null == exchange.getRequest().getHeaders().getContentType()
+////                || !isloginOrRegister) {
+////            return chain.filter(exchange);
+////        }
+//        log.info("GlobalCacheRequestBodyFilter into");
+//        // DataBufferUtils.join 拿到请求中的数据 --> DataBuffer
+//        return DataBufferUtils.join(exchange.getRequest().getBody()).flatMap(dataBuffer -> {
+//
+//            // 确保数据缓冲区不被释放, 必须要 DataBufferUtils.retain
+//            DataBufferUtils.retain(dataBuffer);
+//            // defer、just 都是去创建数据源, 得到当前数据的副本
+//            Flux<DataBuffer> cachedFlux = Flux.defer(() ->
+//                    Flux.just(dataBuffer.slice(0, dataBuffer.readableByteCount())));
+//            // 重新包装 ServerHttpRequest, 重写 getBody 方法, 能够返回请求数据
+//            ServerHttpRequest mutatedRequest =
+//                    new ServerHttpRequestDecorator(exchange.getRequest()) {
+//                        @Override
+//                        public Flux<DataBuffer> getBody() {
+//                            return cachedFlux;
+//                        }
+//                    };
+//            // 将包装之后的 ServerHttpRequest 向下继续传递
+//            log.info("GlobalCacheRequestBodyFilter is execule");
+//            return chain.filter(exchange.mutate().request(mutatedRequest).build());
+//        });
     }
 
     @Override

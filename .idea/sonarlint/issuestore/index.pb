@@ -1,8 +1,4 @@
 
-‡
-Wzsrc-service-gateway/src/main/java/com/zsebank/filter/GlobalCacheRequestBodyFilter.java,c/d/cd69b822a9ab8d17e7e9ef57fc34e55c592c87fe
-‡
-Wzsrc-service-authority-center/src/main/java/com/zsebank/controller/IndexController.java,6/1/615af6a7dacee4ac5f0b23260f17ec6a39e7726a
 
 Q.idea/sonarlint/securityhotspotstore/c/2/c23368a4b8d6a4d823901bfc15c04697a8118094,0/f/0fe1024e4b3aa14e605c42401eb8f6be1fe16d6c
 w
@@ -75,8 +71,6 @@ w
 G.idea/sonarlint/issuestore/c/d/cd69b822a9ab8d17e7e9ef57fc34e55c592c87fe,a/9/a9211891658e66a8bb4325dca2f7a82161ae0450
 
 Q.idea/sonarlint/securityhotspotstore/c/d/cd69b822a9ab8d17e7e9ef57fc34e55c592c87fe,2/0/2039bcbd907ade344e0aedecf453f14e86a8257f
-
-Qzsrc-service-authority-center/src/main/java/com/zsebank/config/Knife4jConfig.java,b/8/b86dd0a03f10a048ff7cdf68e697d0b9e7813bb9
 
 Q.idea/sonarlint/securityhotspotstore/e/6/e613d2fa5e63c30945c1d3c30a38ba70208cd082,3\f\3f3e467b9f3cd1591705eea2e9fcd93644ad492f
 
@@ -245,8 +239,6 @@ G.idea/sonarlint/issuestore/b/b/bbab24264fcce5a674a904a6fe506b13761f471b,a\b\ab
 Q.idea/sonarlint/securityhotspotstore/4/d/4d79dcc2f39c2a84fafc5e44be1770d0b4d33d02,7\b\7bf1fafad303f3e42b370fdf4b34568f3b7c8e9c
 
 Q.idea/sonarlint/securityhotspotstore/4/e/4e362b2cc7329c2514d686b4a82262f61a852348,a\2\a2a37e23a19266a3333dd46c388ad4b5ea3d7887
-‡
-Wzsrc-service-authority-center/src/main/java/com/zsebank/AuthorityCenterApplication.java,c\4\c433343e8a5886393cb9480ac861d8c487417ff8
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 U
@@ -862,8 +854,6 @@ G.idea/sonarlint/issuestore/8/d/8d527275080d084db623350351f03c194afde460,0\b\0b
 w
 G.idea/sonarlint/issuestore/8/5/85dc7e5c96be30cf4a9f92d9e5e991c39b4c3c1c,8\5\85a17b5411271d192e3aeb46cb9c0436f9d9aac7
 
-Q.idea/sonarlint/securityhotspotstore/b/5/b5fe1defd3c3a92c014e4b677a32438d938f8ae8,c\1\c151657ef38a547a79973af21661156f85dbd046
-
 Q.idea/sonarlint/securityhotspotstore/7/3/73d4c28975d96b8db313dbd6958bb4008e4cc3a6,e\2\e270a46a9113d9f8634d0ecfe0bf3899e2f1de28
 
 Q.idea/sonarlint/securityhotspotstore/7/4/74a0e90fa145d4cf4f2495c6a426d2628d6f6ea6,c\7\c79898f5f63f5da5b8461b8e4e77228835d83b09
@@ -955,8 +945,6 @@ G.idea/sonarlint/issuestore/1/8/181a24cd338adcdf010bd6ca3ad609e05d52c0c5,6\8\68
 Q.idea/sonarlint/securityhotspotstore/5/a/5a8f886196663111c4b1dc70fd472af89e82f158,4\1\418fca7e2039b43532b3bba91e342f1e3938663c
 
 Q.idea/sonarlint/securityhotspotstore/5/1/510227da2cd86582a4f0da6415ce8c42488f6969,5\6\56c58fc4dd95c165d29ac94190d1b6ddc2fdf39e
-w
-G.idea/sonarlint/issuestore/b/7/b74e8c230459235775e2f7c88126ddb0ac14fa2d,f\b\fb161f50f4ccaeff05773bcbbd14483b77364e1c
 w
 G.idea/sonarlint/issuestore/b/f/bff5b22e3037285a371214a04cdf63c85512972f,6\b\6bc8baf6a6f4abc532d60cdb8870202e7b96dd23
 w
@@ -1222,8 +1210,6 @@ Q.idea/sonarlint/securityhotspotstore/0/f/0fe3ed2f7353a7a5f414b495342fded56fabc3
 
 Q.idea/sonarlint/securityhotspotstore/1/7/1759e29e1aafdfb2bba2fd9fc75c6ce69a0bb70d,2\3\230d339d4ea3da663b57dbf3619c296d593b92a3
 w
-G.idea/sonarlint/issuestore/4/6/46b1e47422dc9bb27d66232520441f7cb61c8c1d,9\b\9b56dcfb24a81ea60f3f4f729d9fc56c2a60d980
-w
 G.idea/sonarlint/issuestore/0/3/03afa9888fc9a8a89251ca533c28680a5adcb536,f\9\f92d4f2a2f98108a8a6ed2774b354a078ab70150
 w
 G.idea/sonarlint/issuestore/0/f/0fe3ed2f7353a7a5f414b495342fded56fabc372,d\b\db9046da9f6ca481d247ce7fe4f4d9eddc20e9a9
@@ -1405,8 +1391,6 @@ w
 G.idea/sonarlint/issuestore/1/b/1b5015ab980da1ef3f63eb62c3adbbb65a7ef128,a\b\ab483027af967aaf78ddb913767661899b8630e8
 w
 G.idea/sonarlint/issuestore/1/b/1bab3685dcc45402fa2e1b51baf5a0d706d4a6db,3\4\345db88b7f911e53ebc2499ae3a1ceef1de3517d
-w
-G.idea/sonarlint/issuestore/9/b/9b56dcfb24a81ea60f3f4f729d9fc56c2a60d980,7\4\7476fbf3480190e9e2cf15d6d89dec1845b5564e
 w
 G.idea/sonarlint/issuestore/5/d/5db8f6cb85d5ccf9abdceca4183f5b67c9d49e5b,2\2\22b39f60c1fa7c49818de5a8742eaabd66ab1796
 w
@@ -2224,8 +2208,6 @@ G.idea/sonarlint/issuestore/7/d/7d09097980354f92898f6e50cff3ecb9e9583000,1\9\19
 w
 G.idea/sonarlint/issuestore/f/b/fb5a3893cc6dce49f62fb25c244d555a8892e4c8,2\6\266529e90b41f3cb00d8e828b1860534d0577f7a
 w
-G.idea/sonarlint/issuestore/f/b/fb161f50f4ccaeff05773bcbbd14483b77364e1c,e\7\e72013ca1ca5900c60bb0f3e4bd9681346413ed5
-w
 G.idea/sonarlint/issuestore/f/b/fb83ff13a9670dfebdb0118721972cb51b7cfaad,0\4\04ff93545bf0a5200e8de56e8ca5f411487c1bf9
 w
 G.idea/sonarlint/issuestore/b/a/ba98e2b3950d11b4718c594305d04edd6f280416,6\d\6da37118775a5d3126ca8633c35db35490b9ff5a
@@ -2705,8 +2687,6 @@ x
 Hzsrc-service-gateway/src/main/java/com/zsebank/config/GatewayConfig.java,6\d\6da47952550c4bc6941b3a13c6fcdd74eaa3341e
 ‰
 Yzsrc-service-gateway/src/main/java/com/zsebank/config/DynamicRouteServiceImplByNacos.java,b\0\b03ec8a820d2f5a7a1e058708141a10185d8d653
-v
-Fzsrc-service-gateway/src/main/java/com/zsebank/GatewayApplication.java,2\2\22f6f1aea3d57bd768dc51fc86643e830b176c37
 u
 Ezsrc-service-gateway/src/main/java/com/zsebank/entity/AppAccount.java,1\b\1bf06e9a5077c99bc30855cf454c9aa689d8aca5
 
@@ -2719,3 +2699,17 @@ z
 Jzsrc-service-gateway/src/test/java/com/zsebank/service/AppAccountTest.java,e\9\e900ae5bfb0ee1542cf822b7b2726e659beb09be
 v
 Fzsrc-service-gateway/src/main/java/com/zsebank/config/RedisConfig.java,a\2\a2a636bd433b32e4a5d590731804100c90d3ed47
+v
+Fzsrc-service-gateway/src/main/java/com/zsebank/config/GateWayInit.java,0\6\06106a39ef97cac7c72647cc875dec709b35efb9
+\
+,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
+x
+Hzsrc-service-sdk/src/main/java/com/zsebank/entity/AuthSignatureInfo.java,0\f\0f9d55bf1fffe1b8cc79b26e04c4bcc5b497d511
+n
+>zsrc-service-gateway/src/test/java/com/zsebank/HutoolTest.java,b\b\bb24cadca547e03c600bf6f5aebe5d2d6d168d7a
+s
+Czsrc-service-sdk/src/main/java/com/zsebank/utils/SignatureUtil.java,c\e\ce7accf4cafc5769825287e08a641eb3f803276d
+m
+=zsrc-service-gateway/src/test/java/com/zsebank/RedisTest.java,c\f\cfbd4eb5b4f6ab5c5483547f718885a506daba06
+{
+Kzsrc-service-gateway/src/main/java/com/zsebank/util/SignatureParseUtil.java,b\5\b5fe1defd3c3a92c014e4b677a32438d938f8ae8
