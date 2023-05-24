@@ -7,7 +7,12 @@ import org.springframework.core.Ordered;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import org.springframework.core.io.buffer.DataBuffer;
+
+import java.nio.CharBuffer;
+import java.nio.charset.StandardCharsets;
 
 /**
  * HTTP 请求头部携带 Token 验证过滤器
@@ -17,6 +22,14 @@ public class HeaderTokenGatewayFilter implements GatewayFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        log.info("HeaderTokenGatewayFilter");
+
+        Flux<DataBuffer> body = exchange.getRequest().getBody();
+        body.subscribe(buffer -> {
+            CharBuffer charBuffer = StandardCharsets.UTF_8.decode(buffer.asByteBuffer());
+            log.info("charBuffer:[{}]",charBuffer.toString());
+        });
+
         // 从 HTTP Header 中寻找 key 为 token, value 为 imooc 的键值对
         String name = exchange.getRequest().getHeaders().getFirst("token");
         MultiValueMap<String,String> queryParams = exchange.getRequest().getQueryParams();
@@ -34,6 +47,6 @@ public class HeaderTokenGatewayFilter implements GatewayFilter, Ordered {
 
     @Override
     public int getOrder() {
-        return HIGHEST_PRECEDENCE + 2;
+        return HIGHEST_PRECEDENCE + 1;
     }
 }

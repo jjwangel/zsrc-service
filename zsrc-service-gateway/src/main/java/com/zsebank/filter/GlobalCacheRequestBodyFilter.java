@@ -1,65 +1,85 @@
 package com.zsebank.filter;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
-import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.codec.HttpMessageReader;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpRequestDecorator;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.server.HandlerStrategies;
+import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import org.springframework.core.Ordered;
+
+import java.util.List;
 
 /**
- * 缓存请求 body 的全局过滤器
- * Spring WebFlux
- * */
-@Slf4j
+ * @author micha
+ */
 @Component
-@SuppressWarnings("all")
+@Slf4j
 public class GlobalCacheRequestBodyFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
+        ServerHttpRequest request = exchange.getRequest();
+        HttpHeaders headers = request.getHeaders();
+
+        // 处理参数
+        MediaType contentType = headers.getContentType();
+        long contentLength = headers.getContentLength();
+        if (contentLength > 0 && (MediaType.APPLICATION_JSON.equals(contentType))) {
+            return readBody(exchange, chain);
+        }
+
         return chain.filter(exchange);
-//
-////        boolean isloginOrRegister =
-////                exchange.getRequest().getURI().getPath().contains(GatewayConstant.LOGIN_URI)
-////                        || exchange.getRequest().getURI().getPath().contains(GatewayConstant.REGISTER_URI);
-////
-////        if (null == exchange.getRequest().getHeaders().getContentType()
-////                || !isloginOrRegister) {
-////            return chain.filter(exchange);
-////        }
-//        log.info("GlobalCacheRequestBodyFilter into");
-//        // DataBufferUtils.join 拿到请求中的数据 --> DataBuffer
-//        return DataBufferUtils.join(exchange.getRequest().getBody()).flatMap(dataBuffer -> {
-//
-//            // 确保数据缓冲区不被释放, 必须要 DataBufferUtils.retain
-//            DataBufferUtils.retain(dataBuffer);
-//            // defer、just 都是去创建数据源, 得到当前数据的副本
-//            Flux<DataBuffer> cachedFlux = Flux.defer(() ->
-//                    Flux.just(dataBuffer.slice(0, dataBuffer.readableByteCount())));
-//            // 重新包装 ServerHttpRequest, 重写 getBody 方法, 能够返回请求数据
-//            ServerHttpRequest mutatedRequest =
-//                    new ServerHttpRequestDecorator(exchange.getRequest()) {
-//                        @Override
-//                        public Flux<DataBuffer> getBody() {
-//                            return cachedFlux;
-//                        }
-//                    };
-//            // 将包装之后的 ServerHttpRequest 向下继续传递
-//            log.info("GlobalCacheRequestBodyFilter is execule");
-//            return chain.filter(exchange.mutate().request(mutatedRequest).build());
-//        });
     }
 
+
+    private static final List<HttpMessageReader<?>> MESSAGE_READERS = HandlerStrategies.withDefaults().messageReaders();
+
+    /**
+     * ReadJsonBody
+     * @param exchange exchange
+     * @param chain chain
+     * @return Mono<Void>
+     */
+    private Mono<Void> readBody(ServerWebExchange exchange, GatewayFilterChain chain) {
+
+        return DataBufferUtils.join(exchange.getRequest().getBody()).flatMap(dataBuffer -> {
+            byte[] bytes = new byte[dataBuffer.readableByteCount()];
+            dataBuffer.read(bytes);
+            DataBufferUtils.release(dataBuffer);
+            Flux<DataBuffer> cachedFlux = Flux.defer(() -> {
+                DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(bytes);
+                DataBufferUtils.retain(buffer);
+                return Mono.just(buffer);
+            });
+
+            ServerHttpRequest mutatedRequest = new ServerHttpRequestDecorator(exchange.getRequest()) {
+                @Override
+                public @NotNull Flux<DataBuffer> getBody() {
+                    return cachedFlux;
+                }
+            };
+
+            ServerWebExchange mutatedExchange = exchange.mutate().request(mutatedRequest).build();
+
+            return ServerRequest.create(mutatedExchange, MESSAGE_READERS).bodyToMono(String.class)
+                    .doOnNext(objectValue -> log.debug("[GatewayContext]Read JsonBody:{}", objectValue)).then(chain.filter(mutatedExchange));
+        });
+    }
     @Override
     public int getOrder() {
-        return HIGHEST_PRECEDENCE + 1;
+        return HIGHEST_PRECEDENCE;
     }
 }
