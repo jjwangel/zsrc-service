@@ -30,6 +30,7 @@ public class GlobalCacheRequestBodyFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        log.info("-------------GlobalCacheRequestBodyFilter-------------");
 
         ServerHttpRequest request = exchange.getRequest();
         HttpHeaders headers = request.getHeaders();
